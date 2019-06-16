@@ -1,0 +1,21 @@
+plugins {
+    id 'org.springframework.boot'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile('mysql:mysql-connector-java:5.1.28')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+bootJar {
+    enabled = true
+}
+
+jar {
+    enabled = false
+}

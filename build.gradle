@@ -1,0 +1,47 @@
+buildscript {
+    ext {
+        springBootVersion = '2.1.4.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("io.spring.gradle:dependency-management-plugin:0.6.0.RELEASE")
+    }
+}
+
+subprojects {
+    group 'com.shop'
+    version '1.0'
+
+    apply plugin: 'idea'
+    apply plugin: 'java'
+    apply plugin: 'io.spring.dependency-management'
+
+    sourceCompatibility = 1.8
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compile ("com.google.guava:guava:${guavaVersion}")
+        compileOnly "org.projectlombok:lombok:${lombokVersion}"
+        annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+        testAnnotationProcessor('org.projectlombok:lombok')
+        testCompileOnly("org.projectlombok:lombok:${lombokVersion}")
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testCompile ("org.codehaus.groovy:groovy-all:${groovyAllVersion}")
+        testCompile ("org.spockframework:spock-spring:${spockVersion}")
+        testCompile ("org.spockframework:spock-core:${spockVersion}")
+        testCompile('org.springframework.boot:spring-boot-starter-test')
+        testCompile group: 'junit', name: 'junit', version: '4.12'
+    }
+}
+
+project(':api') {
+    dependencies {
+        compile project(':common')
+    }
+}

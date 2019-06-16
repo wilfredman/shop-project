@@ -1,0 +1,10 @@
+spring:
+  profiles:
+    active: local
+
+logging:
+  path: logs/shop/
+  config: classpath:logback_default.xml
+---
+spring:
+  profiles: local
