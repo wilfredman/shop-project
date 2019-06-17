@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by jhtip82@gmail.com on 2019-06-14
@@ -45,9 +46,14 @@ public class ShopController {
         return new ResponseEntity<>(goods, HttpStatus.OK);
     }
 
+    @GetMapping("carts")
+    public List<Cart> getCarts() {
+        return shopService.getAllCarts();
+    }
+
     @PostMapping("cart")
-    public ResponseEntity<Cart> cartSave(@RequestParam Goods pid,
-                                         @RequestParam Options id,
+    public ResponseEntity<Cart> cartSave(@RequestParam Long pid,
+                                         @RequestParam Long id,
                                          @RequestParam Integer cnt) {
         Cart cart = new Cart(pid, id, cnt);
         long cs = shopService.cartSave(cart);

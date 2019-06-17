@@ -4,7 +4,10 @@ POST localhost:8080/api/product
 GET localhost:8080/api/products?page=0&size=3&sort=asc
 ### 상품상세조회
 GET localhost:8080/api/product/1
+
 ### 장바구니상품저장
 POST localhost:8080/api/cart?pid=1&id=1001&cnt=3
 ### 장바구니상품삭제
 DELETE localhost:8080/api/cart/1
+### 장바구니전체조회
+GET localhost:8080/api/carts
