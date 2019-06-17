@@ -22,13 +22,13 @@ public class Options {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column
-    private Long goods_id;
-    @Column
     private String color;
     @Column
     private String size;
     @Column
     private int stock;
+    @Column
+    private Long goods_id;
 
     public Options(Long id, Long goods_id, String color, String size, int stock) {
         this.id = id;

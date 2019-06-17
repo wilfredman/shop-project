@@ -16,7 +16,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by jhtip82@gmail.com on 2019-06-14
@@ -37,21 +39,13 @@ public class Cart {
     @Column
     private Long options_id;
 
-    /*@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
-    private Collection<Goods> goods;*/
+    @OneToMany
+    @JoinColumn(name = "id", referencedColumnName = "goods_id")
+    private Collection<Goods> goods;
 
-    /*@OneToOne
-    @JoinTable(name = "options",
-            joinColumns = @JoinColumn(name = "id"),
-            inverseJoinColumns = @JoinColumn(name = "options_id"))
-    private Options options;
-
-    @ManyToOne
-    @JoinTable(name = "shipping",
-            joinColumns = @JoinColumn(name = "id"),
-            inverseJoinColumns = @JoinColumn(name = "goods_id"))
-    private Shipping shipping;*/
+    @OneToMany
+    @JoinColumn(name = "id", referencedColumnName = "options_id")
+    private Collection<Options> options;
 
     public Cart(Long goods_id, Long options_id, int opt_cnt) {
         this.goods_id = goods_id;
