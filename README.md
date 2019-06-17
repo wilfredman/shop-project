@@ -27,18 +27,18 @@
 		CREATE TABLE `cart` (
 		  `id` bigint(20) NOT NULL AUTO_INCREMENT,
 		  `goods_id` bigint(20) DEFAULT NULL,
-		  `option_id` bigint(20) DEFAULT NULL,
+		  `options_id` bigint(20) DEFAULT NULL,
 		  `opt_cnt` int(11) DEFAULT NULL,
 		  PRIMARY KEY (`id`)
-		) 
+		);
 			
 		CREATE TABLE `goods` (
 		  `id` bigint(20) NOT NULL AUTO_INCREMENT,
 		  `name` varchar(255) DEFAULT NULL,
 		  `price` bigint(20) DEFAULT NULL,
-		  `provider` varchar(255) DEFAULT NULL
+		  `provider` varchar(255) DEFAULT NULL,
 		  PRIMARY KEY (`id`)
-		) 
+		);
 			
 		CREATE TABLE `options` (
 		  `oid` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -46,9 +46,9 @@
 		  `goods_id` bigint(20) DEFAULT NULL,
 		  `id` varchar(255) DEFAULT NULL,
 		  `size` varchar(255) DEFAULT NULL,
-		  `stock` int(11) DEFAULT NULL
+		  `stock` int(11) DEFAULT NULL,
 		  PRIMARY KEY (`oid`)
-		)
+		);
 			
 		CREATE TABLE `shipping` (
 		  `id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -57,13 +57,19 @@
 		  `method` varchar(255) DEFAULT NULL,
 		  `price` bigint(20) DEFAULT NULL,
 		  PRIMARY KEY (`id`)
-		)
+		);
 
  - Application running  
  	-  api module : ShopApplication run
  	
- - Test URL  
- 	- loclahost:8080
+ - node server running
+    - cmd 실행 명령어  
+        - ``` cd  workspace/shop-project/api/src/app ``` 
+        - ``` npm install ```
+        - ``` npm run serve ```  
+    	
+ - Test URL
+ 	- http://loclahost:8080
 
 
 © 2019 Jaehyun Shim

@@ -2,15 +2,19 @@ package com.mall.project.service;
 
 import com.mall.project.domain.Cart;
 import com.mall.project.domain.Goods;
-import com.mall.project.domain.Shipping;
 import com.mall.project.domain.Options;
+import com.mall.project.domain.Shipping;
+import com.mall.project.dto.ProductDto;
+import com.mall.project.dto.ProductDto.ProductListResponse;
 import com.mall.project.repository.CartRepository;
 import com.mall.project.repository.GoodsRepository;
 import com.mall.project.repository.OptionsRepository;
 import com.mall.project.repository.ShippingRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -22,26 +26,24 @@ import java.util.List;
  */
 @Service
 @AllArgsConstructor
-public class ShopService {
+public class ProductService {
     private GoodsRepository goodsRepository;
-    private OptionsRepository optionsRepository;
-    private ShippingRepository shippingRepository;
     private CartRepository cartRepository;
 
-    public Long goodsSave(Goods goods) {
-        return goodsRepository.save(goods).getId();
+
+    public ProductListResponse getAllProducts(ProductDto.ProductListRequest request) {
+        int page = request.getPage() <= 0 ? 0 : request.getPage() - 1;
+        Pageable pageable = PageRequest.of(page, request.getSize(), Sort.by("id").descending());
+        Page<Goods> findResult = goodsRepository.findAll(pageable);
+        return mapToProductResponse(findResult);
     }
 
-    public Long optionsSave(Options options) {
-        return optionsRepository.save(options).getId();
-    }
-
-    public Long shippingSave(Shipping shipping) {
-        return shippingRepository.save(shipping).getId();
-    }
-
-    public Page<Goods> getAllProducts(Pageable pageable) {
-        return goodsRepository.findAll(pageable);
+    private ProductListResponse mapToProductResponse(Page<Goods> findResult) {
+        return ProductListResponse.builder()
+                .goods(findResult.getContent())
+                .page(findResult.getPageable().getPageNumber())
+                .totalElement(findResult.getTotalElements())
+                .build();
     }
 
     public Goods getProducById(long id) {

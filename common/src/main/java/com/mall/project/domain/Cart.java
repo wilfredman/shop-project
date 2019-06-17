@@ -1,7 +1,6 @@
 package com.mall.project.domain;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -26,30 +25,24 @@ import java.util.List;
  */
 @Data
 @Entity
-@NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor
+@Builder
 public class Cart {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private long id;
     @Column
-    private int opt_cnt;
-    @Column
-    private Long goods_id;
-    @Column
-    private Long options_id;
+    private int optCnt;
 
-    @OneToMany
-    @JoinColumn(name = "id", referencedColumnName = "goods_id")
-    private Collection<Goods> goods;
+    @ManyToOne
+    @JoinColumn(name = "goods_id")
+    private Goods goods;
 
-    @OneToMany
-    @JoinColumn(name = "id", referencedColumnName = "options_id")
-    private Collection<Options> options;
+    @ManyToOne
+    @JoinColumn(name = "options_id")
+    private Options options;
 
-    public Cart(Long goods_id, Long options_id, int opt_cnt) {
-        this.goods_id = goods_id;
-        this.options_id = options_id;
-        this.opt_cnt = opt_cnt;
-    }
+    private long userId;
 }

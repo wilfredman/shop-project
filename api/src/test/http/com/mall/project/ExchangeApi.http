@@ -1,0 +1,24 @@
+
+### 상품전제조회
+GET localhost:8080/products?page=0&size=3
+
+### 상품상세조회
+GET localhost:8080/product/1
+
+### 장바구니상품저장
+POST localhost:8080/cart
+Content-Type: application/json
+
+{
+ "goodsId" : 1,
+  "optionId": 1001,
+  "quantity": 1,
+  "userId": 1
+
+}
+### 장바구니상품삭제
+DELETE localhost:8080/api/cart/1
+### 장바구니전체조회
+GET localhost:8080/carts?userId=1
+
+###

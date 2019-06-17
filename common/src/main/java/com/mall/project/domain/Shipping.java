@@ -1,13 +1,11 @@
 package com.mall.project.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by jhtip82@gmail.com on 2019-06-14
@@ -15,7 +13,9 @@ import javax.persistence.Id;
  */
 @Data
 @Entity
-@NoArgsConstructor
+@RequiredArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Shipping {
     @Id
     @Column
@@ -29,22 +29,4 @@ public class Shipping {
     private long price;
     @Column
     private boolean canBundle;
-
-    public Shipping(Long goods_id, String method, long price, boolean canBundle) {
-        this.goods_id = goods_id;
-        this.method = method;
-        this.price = price;
-        this.canBundle = canBundle;
-    }
-
-    @Override
-    public String toString() {
-        return "Shipping{" +
-                "id=" + id +
-                ", goods_id=" + "" +
-                ", method='" + method + '\'' +
-                ", price=" + price +
-                ", canBundle=" + canBundle +
-                '}';
-    }
 }

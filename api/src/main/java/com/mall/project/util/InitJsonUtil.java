@@ -2,7 +2,7 @@ package com.mall.project.util;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mall.project.domain.InitEntity;
+import com.mall.project.dto.InitEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
@@ -14,12 +14,11 @@ import java.io.IOException;
  * Github : http://github.com/jhtip
  */
 @Component
-@AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class JsonFormat {
+public class InitJsonUtil {
     private final static String jsonFile = "/shopRequest.json";
 
-    public InitEntity dummyPush() throws IOException {
+    public InitEntity shopItemsPush() throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
 
         return objectMapper.readValue(

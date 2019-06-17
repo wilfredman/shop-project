@@ -1,6 +1,6 @@
 package com.mall.project.util;
 
-import com.mall.project.domain.InitEntity;
+import com.mall.project.dto.InitEntity;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,15 +16,15 @@ import java.io.IOException;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class JsonFormatTest {
+public class InitJsonUtilTest {
 
     @Autowired
-    private JsonFormat jsonFormat;
+    private InitJsonUtil initJsonUtil;
 
     @Test
     public void dummyPushTest() throws IOException {
 
-        InitEntity init = jsonFormat.dummyPush();
+        InitEntity init = initJsonUtil.shopItemsPush();
         System.out.println(init.toString());
 
     }

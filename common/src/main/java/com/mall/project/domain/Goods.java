@@ -1,19 +1,11 @@
 package com.mall.project.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.Collection;
 
 /**
@@ -22,10 +14,12 @@ import java.util.Collection;
  */
 @Data
 @Entity
-@NoArgsConstructor
+@RequiredArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Goods {
     @Id
-    @Column
+    @Column(name="id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column
@@ -44,11 +38,5 @@ public class Goods {
             joinColumns = @JoinColumn(name = "id"),
             inverseJoinColumns = @JoinColumn(name = "goods_id"))
     private Shipping shipping;
-
-    public Goods(String name, String provider, long price) {
-        this.name = name;
-        this.provider = provider;
-        this.price = price;
-    }
 
 }
