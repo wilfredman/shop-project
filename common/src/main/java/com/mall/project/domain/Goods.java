@@ -45,19 +45,16 @@ public class Goods {
             inverseJoinColumns = @JoinColumn(name = "goods_id"))
     private Shipping shipping;
 
+    @OneToMany
+    @JoinTable(name = "cart",
+            joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "goods_id"))
+    private Collection<Goods> goods;
+
     public Goods(String name, String provider, long price) {
         this.name = name;
         this.provider = provider;
         this.price = price;
     }
 
-    @Override
-    public String toString() {
-        return "Goods{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", provider='" + provider + '\'' +
-                ", price=" + price +
-                '}';
-    }
 }

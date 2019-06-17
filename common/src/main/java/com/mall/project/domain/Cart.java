@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import java.util.Collection;
@@ -28,28 +30,24 @@ public class Cart {
     @Column
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     @Column
     private int opt_cnt;
-
     @Column
     private Long goods_id;
-
     @Column
     private Long options_id;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "goods_id")
-    private Collection<Goods> goods;
-
+    /*@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id")
+    private Collection<Goods> goods;*/
 
     /*@OneToOne
     @JoinTable(name = "options",
             joinColumns = @JoinColumn(name = "id"),
             inverseJoinColumns = @JoinColumn(name = "options_id"))
-    private Options options;*/
+    private Options options;
 
-    /*@OneToMany
+    @ManyToOne
     @JoinTable(name = "shipping",
             joinColumns = @JoinColumn(name = "id"),
             inverseJoinColumns = @JoinColumn(name = "goods_id"))
@@ -59,16 +57,5 @@ public class Cart {
         this.goods_id = goods_id;
         this.options_id = options_id;
         this.opt_cnt = opt_cnt;
-    }
-
-    @Override
-    public String toString() {
-        return "Cart{" +
-                "id=" + id +
-                ", opt_cnt=" + opt_cnt +
-                ", goods_id=" + goods_id +
-                ", options_id=" + options_id +
-                ", goods=" + goods +
-                '}';
     }
 }

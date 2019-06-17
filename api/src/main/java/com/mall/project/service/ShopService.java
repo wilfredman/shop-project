@@ -8,7 +8,7 @@ import com.mall.project.repository.CartRepository;
 import com.mall.project.repository.GoodsRepository;
 import com.mall.project.repository.OptionsRepository;
 import com.mall.project.repository.ShippingRepository;
-import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -21,31 +21,19 @@ import java.util.List;
  * Github : http://github.com/jhtip
  */
 @Service
-@NoArgsConstructor
+@AllArgsConstructor
 public class ShopService {
     private GoodsRepository goodsRepository;
     private OptionsRepository optionsRepository;
     private ShippingRepository shippingRepository;
     private CartRepository cartRepository;
 
-    public ShopService(CartRepository cartRepository) {
-        this.cartRepository = cartRepository;
-    }
-
-    public ShopService(GoodsRepository goodsRepository,
-                       OptionsRepository optionsRepository,
-                       ShippingRepository shippingRepository) {
-        this.goodsRepository = goodsRepository;
-        this.optionsRepository = optionsRepository;
-        this.shippingRepository = shippingRepository;
-    }
-
     public Long goodsSave(Goods goods) {
         return goodsRepository.save(goods).getId();
     }
 
     public Long optionsSave(Options options) {
-        return optionsRepository.save(options).getOid();
+        return optionsRepository.save(options).getId();
     }
 
     public Long shippingSave(Shipping shipping) {

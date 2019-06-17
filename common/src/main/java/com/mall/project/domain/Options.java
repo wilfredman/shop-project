@@ -20,9 +20,7 @@ public class Options {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long oid;
-    @Column
-    private String id;
+    private Long id;
     @Column
     private Long goods_id;
     @Column
@@ -32,7 +30,7 @@ public class Options {
     @Column
     private int stock;
 
-    public Options(String id, Long goods_id, String color, String size, int stock) {
+    public Options(Long id, Long goods_id, String color, String size, int stock) {
         this.id = id;
         this.goods_id = goods_id;
         this.color = color;
@@ -40,14 +38,4 @@ public class Options {
         this.stock = stock;
     }
 
-    @Override
-    public String toString() {
-        return "Options{" +
-                "id=" + id +
-                ", goods_id=" + goods_id +
-                ", color='" + color + '\'' +
-                ", size='" + size + '\'' +
-                ", stock=" + stock +
-                '}';
-    }
 }

@@ -69,20 +69,16 @@ public class ShopController {
         try {
             for (InitEntity.Goods e : entity.getGoods()) {
                 Goods goods = new Goods(e.getName(), e.getProvider(), e.getPrice());
-                long gs = shopService.goodsSave(goods);
-                if (gs == 0L) return new ResponseEntity<>(HttpStatus.CONFLICT);
+                shopService.goodsSave(goods);
 
                 for (InitEntity.Goods.Options o : e.getOptions()) {
-                    String getId = String.valueOf(o.getId());
-                    Options options = new Options(getId, e.getId(), o.getColor(), o.getSize(), o.getStock());
-                    long os = shopService.optionsSave(options);
-                    if (os == 0L) return new ResponseEntity<>(HttpStatus.CONFLICT);
+                    Options options = new Options(o.getId(), e.getId(), o.getColor(), o.getSize(), o.getStock());
+                    shopService.optionsSave(options);
                 }
 
                 InitEntity.Goods.Shipping s = e.getShipping();
                 Shipping shipping = new Shipping(e.getId(), s.getMethod(), s.getPrice(), s.isCanBundle());
-                long ss = shopService.shippingSave(shipping);
-                if (ss == 0L) return new ResponseEntity<>(HttpStatus.CONFLICT);
+                shopService.shippingSave(shipping);
             }
         } catch (Exception e) {
             log.error(e.getMessage());
