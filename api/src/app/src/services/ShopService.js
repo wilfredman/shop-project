@@ -3,7 +3,7 @@ import Api from './Api'
 const urlLists = {
     productList : '/products',
     addCart: '/cart',
-    removeCart: '/cart/delete',
+    removeCart: '/cart',
     cartList: '/cart'
 }
 
@@ -15,7 +15,7 @@ export default {
         return Api.post(urlLists.addCart, param);
     },
     removeCart(param) {
-        return Api.post(urlLists.removeCart, param);
+        return Api.delete(urlLists.removeCart, param);
     },
     getCartList(param) {
         return Api.get(urlLists.cartList, param);

@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**
+ * 상품정보조회
  * Created by jhtip82@gmail.com on 2019-06-14
  * Github : http://github.com/jhtip
  */

@@ -4,13 +4,18 @@ import com.mall.project.domain.ApiError;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+/**
+ * json 요청의 경우 경우 RestController로 제한하여 에러처리
+ * Created by jhtip82@gmail.com on 2019-06-14
+ * Github : http://github.com/jhtip
+ */
 @Slf4j
-@ControllerAdvice(annotations = {RestController.class})
+@RestControllerAdvice(annotations = {RestController.class})
 public class ApiExceptionHandler {
 
     @ExceptionHandler({BusinessException.class})

@@ -1,15 +1,9 @@
 package com.mall.project.service;
 
-import com.mall.project.domain.Cart;
 import com.mall.project.domain.Goods;
-import com.mall.project.domain.Options;
-import com.mall.project.domain.Shipping;
 import com.mall.project.dto.ProductDto;
 import com.mall.project.dto.ProductDto.ProductListResponse;
-import com.mall.project.repository.CartRepository;
 import com.mall.project.repository.GoodsRepository;
-import com.mall.project.repository.OptionsRepository;
-import com.mall.project.repository.ShippingRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,10 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
+ * 상품 정보목록 조회 서비스
  * Created by jhtip82@gmail.com on 2019-06-14
  * Github : http://github.com/jhtip
  */
@@ -28,8 +20,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ProductService {
     private GoodsRepository goodsRepository;
-    private CartRepository cartRepository;
-
+    //private CartRepository cartRepository;
 
     public ProductListResponse getAllProducts(ProductDto.ProductListRequest request) {
         int page = request.getPage() <= 0 ? 0 : request.getPage() - 1;
@@ -51,7 +42,7 @@ public class ProductService {
         return obj;
     }
 
-    public List<Cart> getAllCarts() {
+    /*public List<Cart> getAllCarts() {
         List<Cart> list = new ArrayList<>();
         cartRepository.findAll().forEach(e -> list.add(e));
         return list;
@@ -59,7 +50,5 @@ public class ProductService {
 
     public Long cartSave(Cart cart) {
         return cartRepository.save(cart).getId();
-    }
-
-
+    }*/
 }

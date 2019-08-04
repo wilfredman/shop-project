@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import javax.persistence.*;
 
 /**
+ * 배송정보 JPA Entity
  * Created by jhtip82@gmail.com on 2019-06-14
  * Github : http://github.com/jhtip
  */

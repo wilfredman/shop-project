@@ -6,9 +6,13 @@ import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
 
+/**
+ * API 공통 에러 DTO
+ * Created by jhtip82@gmail.com on 2019-06-14
+ * Github : http://github.com/jhtip
+ */
 @Data
 public class ApiError {
-
     private HttpStatus status;
     private String code;
     private String message;

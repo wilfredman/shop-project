@@ -23,9 +23,7 @@ public class InitJsonUtilTest {
 
     @Test
     public void dummyPushTest() throws IOException {
-
         InitEntity init = initJsonUtil.shopItemsPush();
         System.out.println(init.toString());
-
     }
 }

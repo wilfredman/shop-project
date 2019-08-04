@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
+ * 사용자별 장바구니 정보 조회,추가,삭제 서비스
  * Created by jhtip82@gmail.com on 2019-06-14
  * Github : http://github.com/jhtip
  */
@@ -27,23 +28,19 @@ public class CartService {
     private GoodsRepository goodsRepository;
     private OptionsRepository optionsRepository;
 
-
-
     public List<Cart> getAllCarts(CartDto.CartListRequest request) {
         List<Cart> carts = cartRepository.findByUserId(request.getUserId());
         return carts;
-
     }
 
     public Cart cartSave(CartDto.CartAddRequest request) {
         Optional<Goods> good = goodsRepository.findById(request.getGoodsId());
         Optional<Options> option = optionsRepository.findById(request.getOptionId());
-        if (!good.isPresent() || !option.isPresent()) new ResponseEntity<>(HttpStatus.BAD_REQUEST);;
-        return cartRepository.save(makeCart(request,good.get(), option.get()));
+        if (!good.isPresent() || !option.isPresent()) new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        return cartRepository.save(makeCart(request, good.get(), option.get()));
     }
 
     private Cart makeCart(CartDto.CartAddRequest request, Goods goods, Options options) {
-
         return Cart.builder()
                 .optCnt(request.getQuantity())
                 .goods(goods)
@@ -54,7 +51,7 @@ public class CartService {
 
 
     public void deleteCarts(CartDto.CartDeleteRequest request) {
-        request.getOptionIds().stream().forEach(id->
+        request.getOptionIds().stream().forEach(id ->
                 cartRepository.deleteByOptionsIdAndUserId(id, request.getUserId())
         );
     }

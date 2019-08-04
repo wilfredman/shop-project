@@ -16,11 +16,15 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.persistence.PostLoad;
 
+/**
+ * InitJsonUtil 에서 생성된 상품,옵션,배송정보를 각 Repository에 저장
+ * Created by jhtip82@gmail.com on 2019-06-14
+ * Github : http://github.com/jhtip
+ */
 @Slf4j
 @RequiredArgsConstructor
 @Component
 public class InitService {
-
     private final GoodsRepository goodsRepository;
     private final OptionsRepository optionsRepository;
     private final ShippingRepository shippingRepository;
@@ -31,18 +35,14 @@ public class InitService {
         InitJsonUtil initJsonUtil = new InitJsonUtil();
         try {
             InitEntity entity = initJsonUtil.shopItemsPush();
-
-
-            entity.getGoods().stream().forEach(goods->{
+            entity.getGoods().stream().forEach(goods -> {
                 goodsRepository.save(makeGoods(goods));
                 shippingRepository.save(makeShipping(goods.getId(), goods.getShipping()));
 
-                goods.getOptions().forEach(options-> {
+                goods.getOptions().forEach(options -> {
                     optionsRepository.save(makeOption(goods.getId(), options));
-
                 });
             });
-
         } catch (Exception e) {
             log.error("InitDb -> {} ", e.getMessage());
         }

@@ -1,6 +1,5 @@
 package com.mall.project.dto;
 
-import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
@@ -8,6 +7,7 @@ import lombok.ToString;
 import java.util.List;
 
 /**
+ * 상품정보, 상품옵션, 배송정보 JPA Entity
  * Created by jhtip82@gmail.com on 2019-06-14
  * Github : http://github.com/jhtip
  */

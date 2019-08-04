@@ -4,6 +4,11 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * 장바구니정보 DTO
+ * Created by jhtip82@gmail.com on 2019-06-14
+ * Github : http://github.com/jhtip
+ */
 public class CartDto {
     @Data
     public static class CartAddRequest {

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
+ * 장바구니 정보를 추가,삭제,조회
  * Created by jhtip82@gmail.com on 2019-06-14
  * Github : http://github.com/jhtip
  */
@@ -30,7 +31,7 @@ public class CartController {
         return cartService.cartSave(request);
     }
 
-    @PostMapping("cart/delete")
+    @DeleteMapping("cart")
     public void deleteCarts(CartDto.CartDeleteRequest request) {
         cartService.deleteCarts(request);
     }

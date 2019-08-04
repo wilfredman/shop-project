@@ -8,6 +8,11 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
+/**
+ * 상품정보 DTO
+ * Created by jhtip82@gmail.com on 2019-06-14
+ * Github : http://github.com/jhtip
+ */
 public class ProductDto {
     @Data
     public static class ProductListRequest {

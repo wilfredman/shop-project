@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.util.Collection;
 
 /**
+ * 상품정보 Entity
  * Created by jhtip82@gmail.com on 2019-06-14
  * Github : http://github.com/jhtip
  */
